@@ -98,7 +98,6 @@ fun CustomText4() {
             Text(text = stringResource(id = R.string.random_para))
             Text(text = "YOU CAN SELECT ME JUST LONG PRESS")
             DisableSelection {
-            //Overlapping Issue
             Text(text = "UN-SELECTABLE TEXT INSIDE SELECTION CONTAINER")
             }
         }

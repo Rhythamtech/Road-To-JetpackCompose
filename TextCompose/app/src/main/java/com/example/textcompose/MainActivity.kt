@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,6 +20,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
@@ -106,12 +108,54 @@ fun CustomText4() {
 }
 
 @Composable
+fun SubScriptComposable(){
+    Text(
+        buildAnnotatedString {
+            withStyle(style = SpanStyle(
+                fontSize = MaterialTheme.typography.subtitle1.fontSize)
+            ){
+                append("Namaste")
+            }
+            withStyle(style = SpanStyle(
+                fontSize = MaterialTheme.typography.overline.fontSize,
+                baselineShift = BaselineShift.Subscript)
+            ){
+                append("World")
+            }
+        }
+    )
+}
+
+@Composable
+fun SuperScriptComposable(){
+    Text(
+        buildAnnotatedString {
+            withStyle(style = SpanStyle(
+                fontSize = MaterialTheme.typography.subtitle1.fontSize)
+            ){
+                append("Namaste")
+            }
+            withStyle(style = SpanStyle(
+                fontSize = MaterialTheme.typography.overline.fontSize,
+                baselineShift = BaselineShift.Superscript)
+            ){
+                append("India")
+            }
+        }
+    )
+
+}
+
+@Composable
 fun CustomTextComposable() {
     CustomText1()
     CustomText2()
     CustomText3()
     Spacer(modifier = Modifier.height(10.dp))
     CustomText4()
+    SubScriptComposable()
+    Spacer(modifier = Modifier.height(10.dp))
+    SuperScriptComposable()
 }
 
 

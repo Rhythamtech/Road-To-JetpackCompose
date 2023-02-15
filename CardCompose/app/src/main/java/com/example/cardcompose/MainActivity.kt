@@ -26,7 +26,10 @@ class MainActivity : ComponentActivity() {
                 .background(Color.Gray)
                 .padding(12.dp)
                 ) {
-                ExpandableCard()
+                ExpandableCard(
+                    title = "my title",
+                    description = "Random Text genrated"
+                )
             }
         }
     }
@@ -40,6 +43,8 @@ fun DefaultPreview() {
       .fillMaxSize()
       .background(Color.Gray)
       .padding(12.dp)) {
-      ExpandableCard()
-  }
+      ExpandableCard(
+          title = "my title",
+          description = "Random Text genrated"
+      )  }
 }

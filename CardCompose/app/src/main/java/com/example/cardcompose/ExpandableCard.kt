@@ -16,13 +16,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cardcompose.ui.theme.Shapes
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ExpandableCard() {
+fun ExpandableCard(
+    title:String,
+    titleFontSize:TextUnit = 16.sp,
+    description:String,
+    descriptionMaxLines:Int = 5
+) {
 
     var expandState by remember { mutableStateOf(false) }
     val rotationState by animateFloatAsState(
@@ -51,8 +57,8 @@ fun ExpandableCard() {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     modifier = Modifier.weight(6f),
-                    text = "My Title",
-                    fontSize = 16.sp,
+                    text = title,
+                    fontSize = titleFontSize,
                     fontWeight = FontWeight.ExtraBold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -73,12 +79,8 @@ fun ExpandableCard() {
 
             if (expandState) {
                 Text(
-                    text = "Nullam finibus felis ex, nec dignissim purus cursus eu." +
-                            " Aliquam dapibus, nisi vitae lacinia rhoncus, arcu eros posuere odio, " +
-                            "vitae interdum lectus est id magna. Nam rhoncus lectus risus, semper interdum elit " +
-                            "laoreet a. Nullam vel risus quam. Mauris a sem facilisis, dapibus eros eu, euismod sapien. Aenean id sapien at ipsum mollis porta." +
-                            " Vestibulum sed varius felis. Etiam et tortor massa. Fusce ornare nec mi ut congue.",
-                    maxLines = 5,
+                    text = description,
+                    maxLines = descriptionMaxLines,
                     overflow = TextOverflow.Ellipsis
                 )
             }
@@ -91,5 +93,8 @@ fun ExpandableCard() {
 @Preview
 @Composable
 fun ExpandableCardPreview() {
-    ExpandableCard()
+    ExpandableCard(
+        title = "my title",
+        description = "Random Text genrated"
+    )
 }

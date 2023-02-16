@@ -95,6 +95,6 @@ fun ExpandableCard(
 fun ExpandableCardPreview() {
     ExpandableCard(
         title = "my title",
-        description = "Random Text genrated"
+        description = "Random Text generated"
     )
 }

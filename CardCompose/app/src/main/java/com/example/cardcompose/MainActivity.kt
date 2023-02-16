@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                 ExpandableCard(
                     title = "my title",
-                    description = "Random Text genrated"
+                    description = "Random Text generated"
                 )
             }
         }
@@ -45,6 +45,6 @@ fun DefaultPreview() {
       .padding(12.dp)) {
       ExpandableCard(
           title = "my title",
-          description = "Random Text genrated"
+          description = "Random Text generated"
       )  }
 }

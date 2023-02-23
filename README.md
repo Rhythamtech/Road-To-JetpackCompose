@@ -1,5 +1,5 @@
 
-# [Jetpack Compose Android kotlin] (https://github.com/Rhythamtech/Road-To-JetpackCompose/)
+# [Jetpack Compose Android kotlin](https://github.com/Rhythamtech/Road-To-JetpackCompose/)
 ### My personal compose journey tracking
 This repository shows my journey to Jetpack Compose from my First Composable Function.
 

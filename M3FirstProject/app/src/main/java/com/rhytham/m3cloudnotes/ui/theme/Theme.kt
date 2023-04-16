@@ -89,14 +89,6 @@ fun M3CloudNotesTheme(
         useDarkTheme -> darkColorScheme()
         else -> lightColorScheme()
     }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = typography,
-        shapes = shapes
-    ) {
-        // M3 App content
-    }
     MaterialTheme(
     colorScheme = colorScheme,
     content = content

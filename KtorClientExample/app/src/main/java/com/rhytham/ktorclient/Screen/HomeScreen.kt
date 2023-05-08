@@ -10,14 +10,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,6 +47,7 @@ fun HomeScreen() {
         val scope  = rememberCoroutineScope()
         var jsonRepose  by remember { mutableStateOf("") }
         val apiRepo = ApiRepository()
+        var showLoading by remember { mutableStateOf(false) }
 
         val post = Post(
             title = "How to Make HTTP Requests With Ktor-Client in Android",
@@ -56,6 +60,8 @@ fun HomeScreen() {
         Text( style =MaterialTheme.typography.headlineLarge,
             text = headLine)
         Divider()
+
+
         FilterChipGroup(items = chipsList,
             onSelectedChanged = { selectedIndex:Int ->
                 headLine = chipsList[selectedIndex]
@@ -82,12 +88,11 @@ fun HomeScreen() {
             .align(alignment = Alignment.CenterHorizontally)
             .width(200.dp),
             onClick = {
-
+                showLoading = true
                 scope.launch {
                     when(headLine){
                         "/POST" -> {
                             jsonRepose = apiRepo.createNewPost(post).toString()
-
                         }
                         "/GET" -> {
                             jsonRepose = apiRepo.getAllPosts().toString()
@@ -101,16 +106,19 @@ fun HomeScreen() {
 
                         }
                         "/DELETE" -> {
-                            jsonRepose = apiRepo.deletePost( id = 2).toString()
+                            jsonRepose = apiRepo.deletePost( id = 2).status.toString()
 
                         }
                     }
+                    showLoading = !showLoading
                 }
 
             }) {
             Text(text = "Send")
         }
-
+        if(showLoading) {
+            LinearProgressIndicator( modifier = Modifier.fillMaxWidth())
+        }
         CodeCard(jsonStr = jsonRepose)
     }
 
